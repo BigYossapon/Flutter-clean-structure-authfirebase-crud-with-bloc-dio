@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../../../../../utils/user_secure__storage.dart';
 
 import '../../../domain/models/request_editprofile_model/request_editprofile_model.dart';
-import '../../../domain/repositories/profile_repository.dart';
+import '../../../domain/repositories/api_nodejs/profile_repository.dart';
 
 part 'put_profile_event.dart';
 part 'put_profile_state.dart';

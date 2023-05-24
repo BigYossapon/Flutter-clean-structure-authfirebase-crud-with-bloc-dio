@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
-import '../../../domain/models/request_editprofile_model/request_editprofile_model.dart';
+import '../../../../domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
+import '../../../../domain/models/request_editprofile_model/request_editprofile_model.dart';
 
 part 'profile_apiservice.g.dart';
 

@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:apptester/src/features/profile/domain/repositories/profile_repository.dart';
+import 'package:apptester/src/features/profile/domain/repositories/api_nodejs/profile_repository.dart';
 
-import 'package:apptester/src/features/register/domain/repositories/register_repository.dart';
+import 'package:apptester/src/features/register/domain/repositories/api_nodejs/register_repository.dart';
 import 'package:dio/dio.dart';
 
 import 'package:injectable/injectable.dart';
 
-import '../../domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
-import '../../domain/models/request_editprofile_model/request_editprofile_model.dart';
-import '../datasources/remote/profile_apiservice.dart';
+import '../../../domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
+import '../../../domain/models/request_editprofile_model/request_editprofile_model.dart';
+import '../../datasources/remote/api_nodejs/profile_apiservice.dart';
 
 @injectable
 class ProfileRepositoryimpl extends ProfileRepository {

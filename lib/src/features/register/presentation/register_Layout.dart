@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -5,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../login/presentation/login_Screen.dart';
 
-import '../data/repositories/register_repositoryImpl.dart';
+import '../data/repositories/api_nodejs/register_repositoryImpl.dart';
 import '../domain/models/request_register_model.dart/request_register_model.dart';
 import 'bloc/post_register/post_register_bloc.dart';
 
@@ -64,7 +65,7 @@ class _RegisterLayoutState extends State<RegisterLayout> {
                     // สถานะปกติ
                     borderSide: BorderSide(width: 1.0), // กำหนดสีในนี้ได้
                   ),
-                  labelText: 'Username',
+                  labelText: 'Email',
                 ),
               ),
             ),
@@ -88,75 +89,6 @@ class _RegisterLayoutState extends State<RegisterLayout> {
                     borderSide: BorderSide(width: 1.0), // กำหนดสีในนี้ได้
                   ),
                   labelText: 'Password',
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 5.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-                controller: email,
-                validator: (value) =>
-                    value!.isEmpty ? 'Input cannot be empty!' : null,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    // เมื่อ focus
-                    borderSide: BorderSide(width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    // สถานะปกติ
-                    borderSide: BorderSide(width: 1.0), // กำหนดสีในนี้ได้
-                  ),
-                  labelText: 'Email',
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 5.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-                controller: address,
-                validator: (value) =>
-                    value!.isEmpty ? 'Input cannot be empty!' : null,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    // เมื่อ focus
-                    borderSide: BorderSide(width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    // สถานะปกติ
-                    borderSide: BorderSide(width: 1.0), // กำหนดสีในนี้ได้
-                  ),
-                  labelText: 'Address',
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 5.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: TextFormField(
-                textAlignVertical: TextAlignVertical.center,
-                controller: country,
-                validator: (value) =>
-                    value!.isEmpty ? 'Input cannot be empty!' : null,
-                decoration: const InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    // เมื่อ focus
-                    borderSide: BorderSide(width: 1.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    // สถานะปกติ
-                    borderSide: BorderSide(width: 1.0), // กำหนดสีในนี้ได้
-                  ),
-                  labelText: 'Country',
                 ),
               ),
             ),
@@ -192,7 +124,21 @@ class _RegisterLayoutState extends State<RegisterLayout> {
                     if (_formKey.currentState!.validate()) {
                       print('Form Complete');
                       _formKey.currentState!.save();
-
+                      try {
+                        final credential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text,
+                        );
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          print('The password provided is too weak.');
+                        } else if (e.code == 'email-already-in-use') {
+                          print('The account already exists for that email.');
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
                       // requestRegisterModel.username = username.text;
                       // requestRegisterModel.password = password.text;
                       // requestRegisterModel.address = address.text;

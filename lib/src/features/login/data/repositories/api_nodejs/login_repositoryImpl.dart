@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 
 import 'package:injectable/injectable.dart';
 
-import '../../domain/models/request_login_model/request_login_model.dart';
-import '../../domain/models/response_profilelogin_model/response_login_model.dart';
-import '../../domain/repositories/login_repository.dart';
-import '../datasources/remote/login_apiservice.dart';
+import '../../../domain/models/api_nodejs/request_login_model/request_login_model.dart';
+import '../../../domain/models/api_nodejs/response_profilelogin_model/response_login_model.dart';
+import '../../../domain/repositories/api_nodejs/login_repository.dart';
+import '../../datasources/remote/api_nodejs/login_apiservice.dart';
 
 @injectable
 class LoginRepositoryimpl extends LoginRepository {

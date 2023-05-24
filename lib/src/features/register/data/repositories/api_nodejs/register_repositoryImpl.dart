@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:apptester/src/features/register/domain/repositories/register_repository.dart';
+import 'package:apptester/src/features/register/domain/repositories/api_nodejs/register_repository.dart';
 import 'package:dio/dio.dart';
 
 import 'package:injectable/injectable.dart';
 
-import '../../domain/models/request_register_model.dart/request_register_model.dart';
-import '../datasources/remote/register_apiservice.dart';
+import '../../../domain/models/request_register_model.dart/request_register_model.dart';
+import '../../datasources/remote/api_nodejs/register_apiservice.dart';
 
 @injectable
 class RegisterRepositoryimpl extends RegisterRepository {

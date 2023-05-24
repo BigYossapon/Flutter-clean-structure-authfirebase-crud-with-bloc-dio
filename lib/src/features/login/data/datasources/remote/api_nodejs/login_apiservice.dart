@@ -6,8 +6,8 @@ import 'package:dio/dio.dart';
 
 import 'package:retrofit/retrofit.dart';
 
-import '../../../domain/models/request_login_model/request_login_model.dart';
-import '../../../domain/models/response_profilelogin_model/response_login_model.dart';
+import '../../../../domain/models/api_nodejs/request_login_model/request_login_model.dart';
+import '../../../../domain/models/api_nodejs/response_profilelogin_model/response_login_model.dart';
 
 part 'login_apiservice.g.dart';
 

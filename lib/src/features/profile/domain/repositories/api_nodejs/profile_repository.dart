@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 
-import '../models/request_deleteprofile_model/request_deleteprofile_model.dart';
-import '../models/request_editprofile_model/request_editprofile_model.dart';
+import '../../models/request_deleteprofile_model/request_deleteprofile_model.dart';
+import '../../models/request_editprofile_model/request_editprofile_model.dart';
 
 abstract class ProfileRepository {
   // Future<List<RequestModel>> getEmployeeData();

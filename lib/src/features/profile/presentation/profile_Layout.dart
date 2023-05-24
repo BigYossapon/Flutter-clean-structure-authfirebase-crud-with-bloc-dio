@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -9,12 +10,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../firebaseservice.dart';
 import '../../../utils/string.dart';
 import '../../../utils/user_secure__storage.dart';
 import '../../../utils/user_shared_preferences.dart';
 import '../../login/presentation/login_Screen.dart';
 
-import '../data/repositories/profile_repositoryImpl.dart';
+import '../data/repositories/api_nodejs/profile_repositoryImpl.dart';
 import '../domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
 import '../domain/models/request_editprofile_model/request_editprofile_model.dart';
 import 'bloc/delete_profile/delete_profile_bloc.dart';
@@ -29,6 +31,7 @@ class ProfileLayout extends StatefulWidget {
 }
 
 class _ProfileLayoutState extends State<ProfileLayout> {
+  User? user = FirebaseAuth.instance.currentUser;
   final _formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final username = TextEditingController();
@@ -486,21 +489,24 @@ void _dialoglogout(BuildContext buildcontext) {
                   child: const Text('Cancel')),
               TextButton(
                   onPressed: () async {
-                    await UserSecureStorage.setToken("");
-                    await UserSharedPreferences.setAddress("");
-                    await UserSharedPreferences.setUsername("");
-                    await UserSharedPreferences.setAvartar("");
-                    await UserSharedPreferences.setCountry("");
-                    await UserSharedPreferences.setEmail("");
-                    await UserSharedPreferences.setId("");
-                    await UserSharedPreferences.setRoles([""]);
-                    //UserSharedPreferences.password("");
-                    Navigator.pop(context);
-                    Navigator.push(
-                      buildcontext,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()),
-                    );
+                    try {
+                      FirebaseService service = new FirebaseService();
+                      service.signOutFromFirebase();
+                      await UserSecureStorage.setToken("");
+                      await UserSharedPreferences.setAddress("");
+                      await UserSharedPreferences.setUsername("");
+                      await UserSharedPreferences.setAvartar("");
+                      await UserSharedPreferences.setCountry("");
+                      await UserSharedPreferences.setEmail("");
+                      await UserSharedPreferences.setId("");
+                      await UserSharedPreferences.setRoles([""]);
+                      Navigator.pop(context);
+                      Navigator.push(
+                        buildcontext,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()),
+                      );
+                    } catch (e) {}
                   },
                   child: const Text('Confirm'))
             ],

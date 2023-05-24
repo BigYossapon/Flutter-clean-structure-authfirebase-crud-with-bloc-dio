@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import '../../../domain/models/request_login_model/request_login_model.dart';
-import '../../../domain/models/response_profilelogin_model/response_login_model.dart';
-import '../../../domain/repositories/login_repository.dart';
+import '../../../domain/models/api_nodejs/request_login_model/request_login_model.dart';
+import '../../../domain/models/api_nodejs/response_profilelogin_model/response_login_model.dart';
+import '../../../domain/repositories/api_nodejs/login_repository.dart';
 
 part 'post_login_event.dart';
 part 'post_login_state.dart';

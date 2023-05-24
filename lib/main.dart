@@ -4,14 +4,18 @@ import 'package:apptester/src/features/profile/presentation/profile_Screen.dart'
 import 'package:apptester/src/features/splash/splash_Screen.dart';
 import 'package:apptester/src/utils/app_bloc_observe.dart';
 import 'package:apptester/src/utils/user_secure__storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   BlocOverrides.runZoned(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp();
       //await configureDependencies();
+
       runApp(const MyApp());
     },
     blocObserver: AppBlocObserver(),

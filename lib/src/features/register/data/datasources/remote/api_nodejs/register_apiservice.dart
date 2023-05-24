@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../../domain/models/request_register_model.dart/request_register_model.dart';
+import '../../../../domain/models/request_register_model.dart/request_register_model.dart';
 
 part 'register_apiservice.g.dart';
 

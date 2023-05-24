@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../domain/models/request_register_model.dart/request_register_model.dart';
-import '../../../domain/repositories/register_repository.dart';
+import '../../../domain/repositories/api_nodejs/register_repository.dart';
 
 part 'post_register_event.dart';
 part 'post_register_state.dart';

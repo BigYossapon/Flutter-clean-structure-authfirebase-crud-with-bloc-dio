@@ -13,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../../utils/user_shared_preferences.dart';
 import '../../login/presentation/login_Screen.dart';
 
-import '../data/repositories/profile_repositoryImpl.dart';
+import '../data/repositories/api_nodejs/profile_repositoryImpl.dart';
 import 'bloc/delete_profile/delete_profile_bloc.dart';
 import 'bloc/picker_avartar_profile/picker_avartar_profile_bloc.dart';
 import 'bloc/put_profile/put_profile_bloc.dart';

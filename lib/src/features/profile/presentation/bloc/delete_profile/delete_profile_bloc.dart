@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
-import '../../../domain/repositories/profile_repository.dart';
+import '../../../domain/repositories/api_nodejs/profile_repository.dart';
 
 part 'delete_profile_event.dart';
 part 'delete_profile_state.dart';

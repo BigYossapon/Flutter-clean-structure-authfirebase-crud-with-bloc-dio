@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../home/presentations/home_Screen.dart';
 
-import '../data/repositories/register_repositoryImpl.dart';
+import '../data/repositories/api_nodejs/register_repositoryImpl.dart';
 import 'bloc/post_register/post_register_bloc.dart';
 
 class RegisterScreen extends StatelessWidget {

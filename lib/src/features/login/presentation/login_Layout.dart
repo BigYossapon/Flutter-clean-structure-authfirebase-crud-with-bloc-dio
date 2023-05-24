@@ -1,16 +1,20 @@
-import 'package:apptester/src/features/login/data/repositories/login_repositoryImpl.dart';
+import 'package:apptester/src/features/login/data/repositories/api_nodejs/login_repositoryImpl.dart';
 import 'package:apptester/src/features/login/presentation/login_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../firebaseservice.dart';
 import '../../../utils/user_secure__storage.dart';
 import '../../../utils/user_shared_preferences.dart';
 import '../../home/presentations/home_Screen.dart';
 import '../../register/presentation/register_Screen.dart';
-import '../domain/models/request_login_model/request_login_model.dart';
+
 import 'bloc/post_login/post_login_bloc.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginLayout extends StatefulWidget {
   const LoginLayout({super.key});
@@ -21,14 +25,14 @@ class LoginLayout extends StatefulWidget {
 
 class _LoginLayoutState extends State<LoginLayout> {
   final _formKey = GlobalKey<FormState>();
-  final username = TextEditingController();
+  final email = TextEditingController();
   final password = TextEditingController();
-
+  User? result = FirebaseAuth.instance.currentUser;
   //late RequestLoginModel requestLoginModel;
 
   @override
   void dispose() {
-    username.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
+    email.dispose(); // ยกเลิกการใช้งานที่เกี่ยวข้องทั้งหมดถ้ามี
     password.dispose();
 
     super.dispose();
@@ -50,7 +54,7 @@ class _LoginLayoutState extends State<LoginLayout> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TextFormField(
                 textAlignVertical: TextAlignVertical.center,
-                controller: username,
+                controller: email,
                 validator: (value) =>
                     value!.isEmpty ? 'Input cannot be empty!' : null,
                 decoration: const InputDecoration(
@@ -62,7 +66,7 @@ class _LoginLayoutState extends State<LoginLayout> {
                     // สถานะปกติ
                     borderSide: BorderSide(width: 1.0), // กำหนดสีในนี้ได้
                   ),
-                  labelText: 'Username',
+                  labelText: 'Email',
                 ),
               ),
             ),
@@ -134,19 +138,21 @@ class _LoginLayoutState extends State<LoginLayout> {
                     if (_formKey.currentState!.validate()) {
                       print('Form Complete');
                       _formKey.currentState!.save();
-                      String pw = password.text;
-                      final requestLoginModel = RequestLoginModel(
-                          username: username.text, password: pw);
+                      // String pw = password.text;
+                      // final requestLoginModel =
+                      //     RequestLoginModel(username: email.text, password: pw);
                       // requestLoginModel.username = username.text;
                       // requestLoginModel.password = password.text;
-
-                      context
-                          .read<PostLoginBloc>()
-                          .add(LoginEvent(requestLoginModel));
+                      FirebaseService service = new FirebaseService();
+                      service.signInwithEmailPassword(
+                          email.text, password.text);
+                      // context
+                      //     .read<PostLoginBloc>()
+                      //     .add(LoginEvent(requestLoginModel));
                     }
                   },
                   child: const Text(
-                    'Login',
+                    'Login with Email/Password',
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
@@ -155,18 +161,75 @@ class _LoginLayoutState extends State<LoginLayout> {
             Container(
               height: 5,
             ),
-            TextButton(
-              onPressed: () {
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const RegisterScreen()),
-                );
-              },
-              child: const Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+            const Text(
+              "don't have an account",
+              style: TextStyle(fontSize: 15),
+            ),
+            Container(
+              height: 5,
+            ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+              child: TextButton(
+                onPressed: () async {},
+                child: const Text(
+                  'Login with Facebook',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+              ),
+            ),
+            Container(
+              height: 5,
+            ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+              child: TextButton(
+                onPressed: () async {
+                  FirebaseService service = new FirebaseService();
+                  try {
+                    await service.signInwithGoogle();
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => const RegisterScreen()),
+                        (Route<dynamic> route) => false);
+                  } catch (e) {
+                    if (e is FirebaseAuthException) {
+                      print(e.message!);
+                    }
+                  }
+                },
+                child: const Text(
+                  'Login with Google',
+                  style: TextStyle(color: Colors.blue, fontSize: 25),
+                ),
+              ),
+            ),
+            Container(
+              height: 5,
+            ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  borderRadius: BorderRadius.circular(20)),
+              child: TextButton(
+                onPressed: () async {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterScreen()),
+                      (Route<dynamic> route) => false);
+                },
+                child: const Text(
+                  'Sign up',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
               ),
             ),
           ],
