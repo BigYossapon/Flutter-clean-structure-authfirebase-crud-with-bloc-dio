@@ -51,4 +51,16 @@ class LoginFirebaseDataSourceImpl extends LoginFirebaseDataSource {
       throw e;
     }
   }
+
+  @override
+  Future<String> getCurrentUId() async {
+    // TODO: implement getCurrentUId
+    return auth.currentUser!.uid;
+  }
+
+  @override
+  Future<bool> isSignIn() async {
+    // TODO: implement isSignIn
+    return auth.currentUser?.uid != null;
+  }
 }

@@ -26,4 +26,16 @@ class LoginFirebaseRepositoryImpl extends LoginFirebaseRepository {
     // TODO: implement signinGoogle
     loginFirebaseDataSource.signinGoogle();
   }
+
+  @override
+  Future<String> getCurrentUId() {
+    // TODO: implement getCurrentUId
+    return loginFirebaseDataSource.getCurrentUId();
+  }
+
+  @override
+  Future<bool> isSignIn() {
+    // TODO: implement isSignIn
+    return loginFirebaseDataSource.isSignIn();
+  }
 }

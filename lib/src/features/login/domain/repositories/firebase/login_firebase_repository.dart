@@ -7,4 +7,8 @@ abstract class LoginFirebaseRepository {
   Future<void> signinGoogle();
 
   Future<void> signinFacebook();
+
+  Future<bool> isSignIn();
+
+  Future<String> getCurrentUId();
 }

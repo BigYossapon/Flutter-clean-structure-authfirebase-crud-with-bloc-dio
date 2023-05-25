@@ -7,4 +7,8 @@ abstract class LoginFirebaseDataSource {
   Future<void> signinGoogle();
 
   Future<void> signinFacebook();
+
+  Future<bool> isSignIn();
+
+  Future<String> getCurrentUId();
 }
