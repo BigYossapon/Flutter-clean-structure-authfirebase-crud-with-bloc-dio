@@ -6,7 +6,7 @@ import '../../datasources/remote/firebase/login_firebase_datasource.dart';
 class LoginFirebaseRepositoryImpl extends LoginFirebaseRepository {
   final LoginFirebaseDataSource loginFirebaseDataSource;
 
-  LoginFirebaseRepositoryImpl(this.loginFirebaseDataSource);
+  LoginFirebaseRepositoryImpl({required this.loginFirebaseDataSource});
 
   @override
   Future<void> signinEmailPassword(

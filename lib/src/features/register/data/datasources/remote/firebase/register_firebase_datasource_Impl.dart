@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class RegisterFirebaseDatasourceImpl extends RegisterFirebaseDatasource {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;
-  RegisterFirebaseDatasourceImpl(this.auth, this.firestore);
+  RegisterFirebaseDatasourceImpl({required this.auth, required this.firestore});
 
   @override
   Future<void> registerEmailPassword(

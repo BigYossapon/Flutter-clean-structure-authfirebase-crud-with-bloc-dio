@@ -2,18 +2,20 @@ import 'package:apptester/src/features/profile/data/datasources/remote/firebase/
 import 'package:apptester/src/features/profile/domain/models/request_editprofile_model/request_editprofile_model.dart';
 import 'package:apptester/src/features/profile/domain/models/request_deleteprofile_model/request_deleteprofile_model.dart';
 import 'package:apptester/src/features/profile/domain/models/request_firebase_createprofile_model/request_firebase_createprofile_model.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../../../domain/models/response_firebase_profile_model/response_firebase_profile_model.dart';
 
 class ProfileFirebaseDatasourceImpl extends ProfileFirebaseDataSource {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;
 
-  ProfileFirebaseDatasourceImpl(this.auth, this.firestore);
+  ProfileFirebaseDatasourceImpl({required this.auth, required this.firestore});
   @override
-  Future<void> deleteProfile(
-      String id, RequestDeleteProfileModel requestDeleteProfileModel) {
+  Future<void> deleteProfile(String id) {
     // TODO: implement deleteProfile
     throw UnimplementedError();
   }
@@ -26,7 +28,7 @@ class ProfileFirebaseDatasourceImpl extends ProfileFirebaseDataSource {
   }
 
   @override
-  Future<void> createProfile(String id,
+  Future<void> createProfile(
       RequestFirebaseCreateProfileModel requestFirebaseCreateProfileModel) {
     // TODO: implement createProfile
     throw UnimplementedError();
@@ -41,9 +43,14 @@ class ProfileFirebaseDatasourceImpl extends ProfileFirebaseDataSource {
   }
 
   @override
-  Future<void> deleteAccount(
-      String id, RequestDeleteProfileModel requestDeleteProfileModel) {
+  Future<void> deleteAccount(String id) {
     // TODO: implement deleteAccount
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResponseFirebaseProfileModel> getProfile() {
+    // TODO: implement getProfile
     throw UnimplementedError();
   }
 }

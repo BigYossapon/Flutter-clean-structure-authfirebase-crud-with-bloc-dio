@@ -9,7 +9,7 @@ class LoginFirebaseDataSourceImpl extends LoginFirebaseDataSource {
   final FirebaseFirestore firestore;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  LoginFirebaseDataSourceImpl(this.auth, this.firestore);
+  LoginFirebaseDataSourceImpl({required this.auth, required this.firestore});
   @override
   Future<void> signinEmailPassword(
       RequestLoginFirebaseModel requestLoginFirebaseModel) async {

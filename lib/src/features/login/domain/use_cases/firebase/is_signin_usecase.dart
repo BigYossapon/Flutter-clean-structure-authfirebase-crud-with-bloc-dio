@@ -1,8 +1,8 @@
 import '../../repositories/firebase/login_firebase_repository.dart';
 
-class IsSignin {
+class IsSigninUseCase {
   final LoginFirebaseRepository loginFirebaseRepository;
-  IsSignin({required this.loginFirebaseRepository});
+  IsSigninUseCase({required this.loginFirebaseRepository});
 
   Future<bool> call() async {
     return loginFirebaseRepository.isSignIn();

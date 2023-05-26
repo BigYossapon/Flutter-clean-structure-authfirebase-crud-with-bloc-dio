@@ -7,7 +7,7 @@ import '../../datasources/remote/firebase/register_firebase_datasource.dart';
 class RegisterFirebaseRepositoryImpl extends RegisterFirebaseRepository {
   final RegisterFirebaseDatasource registerFirebaseDatasource;
 
-  RegisterFirebaseRepositoryImpl(this.registerFirebaseDatasource);
+  RegisterFirebaseRepositoryImpl({required this.registerFirebaseDatasource});
   @override
   Future<void> registerEmailPassword(
       RequestFirebaseRegisterModel requestFirebaseRegisterModel) {

@@ -5,7 +5,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../firebaseservice.dart';
 import '../../../utils/user_secure__storage.dart';
 import '../../../utils/user_shared_preferences.dart';
 import '../../home/presentations/home_Screen.dart';
@@ -143,9 +142,7 @@ class _LoginLayoutState extends State<LoginLayout> {
                       //     RequestLoginModel(username: email.text, password: pw);
                       // requestLoginModel.username = username.text;
                       // requestLoginModel.password = password.text;
-                      FirebaseService service = new FirebaseService();
-                      service.signInwithEmailPassword(
-                          email.text, password.text);
+
                       // context
                       //     .read<PostLoginBloc>()
                       //     .add(LoginEvent(requestLoginModel));
@@ -191,9 +188,7 @@ class _LoginLayoutState extends State<LoginLayout> {
                   color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () async {
-                  FirebaseService service = new FirebaseService();
                   try {
-                    await service.signInwithGoogle();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (context) => const RegisterScreen()),

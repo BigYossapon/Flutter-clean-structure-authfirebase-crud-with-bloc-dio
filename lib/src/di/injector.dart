@@ -5,15 +5,15 @@ import 'package:injectable/injectable.dart';
 final getIt = GetIt.instance;
 
 //Define the Environments here
-const cat = Environment('cat');
-const chuck = Environment('chuck');
+const dev = Environment('dev');
+const prod = Environment('prod');
 
 @InjectableInit(
   initializerName: r'$initGetIt', // default
   preferRelativeImports: true, // default
   asExtension: false, // default
 )
-void configureDependencies({Environment environment = cat}) {
+Future<void> configureDependencies({Environment environment = dev}) async {
   //we init the dependencies using a speciffic env
-  $initGetIt(getIt, environment: environment.name);
+  await $initGetIt(getIt, environment: environment.name);
 }

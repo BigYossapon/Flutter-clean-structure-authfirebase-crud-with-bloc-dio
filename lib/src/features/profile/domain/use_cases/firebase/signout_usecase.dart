@@ -1,8 +1,8 @@
 import '../../repositories/firebase/profile_firebase_repository.dart';
 
-class Signout {
+class SignoutUseCase {
   final ProfileFirebaseRepository profileFirebaseRepository;
-  Signout({required this.profileFirebaseRepository});
+  SignoutUseCase({required this.profileFirebaseRepository});
 
   Future<void> call() async {
     return profileFirebaseRepository.signout();

@@ -5,9 +5,7 @@ class DeleteAccountUserCase {
   final ProfileFirebaseRepository profileFirebaseRepository;
 
   DeleteAccountUserCase({required this.profileFirebaseRepository});
-  Future<void> call(
-      String id, RequestDeleteProfileModel requestDeleteProfileModel) async {
-    return profileFirebaseRepository.deleteAccount(
-        id, requestDeleteProfileModel);
+  Future<void> call(String id) async {
+    return profileFirebaseRepository.deleteAccount(id);
   }
 }

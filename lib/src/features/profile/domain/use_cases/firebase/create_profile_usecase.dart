@@ -6,10 +6,9 @@ class CreateProfileUserCase {
 
   CreateProfileUserCase({required this.profileFirebaseRepository});
   Future<void> call(
-      String id,
       RequestFirebaseCreateProfileModel
           requestFirebaseCreateProfileModel) async {
-    return profileFirebaseRepository.createProfile(
-        id, requestFirebaseCreateProfileModel);
+    return profileFirebaseRepository
+        .createProfile(requestFirebaseCreateProfileModel);
   }
 }

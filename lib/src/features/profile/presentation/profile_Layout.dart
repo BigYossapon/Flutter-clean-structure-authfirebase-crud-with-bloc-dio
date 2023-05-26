@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../firebaseservice.dart';
 import '../../../utils/string.dart';
 import '../../../utils/user_secure__storage.dart';
 import '../../../utils/user_shared_preferences.dart';
@@ -490,8 +489,6 @@ void _dialoglogout(BuildContext buildcontext) {
               TextButton(
                   onPressed: () async {
                     try {
-                      FirebaseService service = new FirebaseService();
-                      service.signOutFromFirebase();
                       await UserSecureStorage.setToken("");
                       await UserSharedPreferences.setAddress("");
                       await UserSharedPreferences.setUsername("");
