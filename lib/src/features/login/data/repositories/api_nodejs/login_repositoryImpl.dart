@@ -9,7 +9,6 @@ import '../../../domain/models/api_nodejs/response_profilelogin_model/response_l
 import '../../../domain/repositories/api_nodejs/login_repository.dart';
 import '../../datasources/remote/api_nodejs/login_apiservice.dart';
 
-@injectable
 class LoginRepositoryimpl extends LoginRepository {
   late final LoginApiService _loginApiService;
   // Dio _dio;

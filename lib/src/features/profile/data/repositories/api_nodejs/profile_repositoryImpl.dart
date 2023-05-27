@@ -11,7 +11,7 @@ import '../../../domain/models/request_deleteprofile_model/request_deleteprofile
 import '../../../domain/models/request_editprofile_model/request_editprofile_model.dart';
 import '../../datasources/remote/api_nodejs/profile_apiservice.dart';
 
-@injectable
+//@injectable
 class ProfileRepositoryimpl extends ProfileRepository {
   late final ProfileApiService _profileApiService;
   // Dio _dio;

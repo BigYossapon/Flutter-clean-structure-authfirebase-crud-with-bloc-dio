@@ -15,23 +15,58 @@ class ProfileFirebaseDatasourceImpl extends ProfileFirebaseDataSource {
 
   ProfileFirebaseDatasourceImpl({required this.auth, required this.firestore});
   @override
-  Future<void> deleteProfile(String id) {
+  Future<void> deleteProfile(String id) async {
     // TODO: implement deleteProfile
-    throw UnimplementedError();
+
+    final noteCollectionRef =
+        firestore.collection("users").doc(id).collection("notes");
+
+    noteCollectionRef.doc(id).get().then((note) {
+      if (note.exists) {
+        noteCollectionRef.doc(id).delete();
+      }
+      return;
+    });
   }
 
   @override
   Future<void> editProfile(
       String id, RequestEditProfileModel requestEditProfileModel) {
     // TODO: implement editProfile
-    throw UnimplementedError();
+
+    final editCollectionRef = firestore.collection("users").doc(id);
+    return editCollectionRef.update(requestEditProfileModel.toJson());
   }
 
   @override
   Future<void> createProfile(
-      RequestFirebaseCreateProfileModel requestFirebaseCreateProfileModel) {
-    // TODO: implement createProfile
-    throw UnimplementedError();
+      RequestFirebaseCreateProfileModel
+          requestFirebaseCreateProfileModel) async {
+    // // TODO: implement createProfile
+    // final db = FirebaseFirestore.instance;
+    // final doc = db.collection("users").doc();
+
+    // await doc.set(requestFirebaseCreateProfileModel.toJson());
+
+    final userCollectionRef =
+        firestore.collection("users").doc(requestFirebaseCreateProfileModel.id);
+
+    userCollectionRef.get().then((user) {
+      final newUser = RequestFirebaseCreateProfileModel(
+              id: requestFirebaseCreateProfileModel.id,
+              username: requestFirebaseCreateProfileModel.username,
+              password: requestFirebaseCreateProfileModel.password,
+              email: requestFirebaseCreateProfileModel.email,
+              address: requestFirebaseCreateProfileModel.address,
+              country: requestFirebaseCreateProfileModel.country,
+              avartar: requestFirebaseCreateProfileModel.avartar)
+          .toJson();
+
+      if (!user.exists) {
+        userCollectionRef.set(newUser);
+      }
+      return;
+    });
   }
 
   @override
@@ -43,14 +78,36 @@ class ProfileFirebaseDatasourceImpl extends ProfileFirebaseDataSource {
   }
 
   @override
-  Future<void> deleteAccount(String id) {
+  Future<void> deleteAccount(String id) async {
     // TODO: implement deleteAccount
-    throw UnimplementedError();
+
+    auth.currentUser!.delete();
   }
 
   @override
-  Future<ResponseFirebaseProfileModel> getProfile() {
+  Future<ResponseFirebaseProfileModel> getProfile(String id) async {
     // TODO: implement getProfile
-    throw UnimplementedError();
+
+    // firestore.collection("users").where(id, isEqualTo: true).get().then(
+    //   (querySnapshot) {
+    //     print("Successfully completed");
+    //     final data = querySnapshot as Map<String, dynamic>;
+    //     return data;
+    //   },
+    //   onError: (e) => print("Error completing: $e"),
+
+    final snapshot =
+        await firestore.collection('users').where(id, isEqualTo: id).get();
+    final userData = snapshot.docs
+        .map((e) =>
+            ResponseFirebaseProfileModel.fromJson(e as Map<String, dynamic>))
+        .single;
+    //final data = snapshot as Map<String, dynamic>;
+
+    return userData;
+
+    // final getCollectionRef = firestore.collection("users").doc(id);
+
+    // return getCollectionRef;
   }
 }

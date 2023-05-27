@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 import '../../../domain/models/request_register_model.dart/request_register_model.dart';
 import '../../datasources/remote/api_nodejs/register_apiservice.dart';
 
-@injectable
+//@injectable
 class RegisterRepositoryimpl extends RegisterRepository {
   late final RegisterApiService _registerApiService;
   // Dio _dio;

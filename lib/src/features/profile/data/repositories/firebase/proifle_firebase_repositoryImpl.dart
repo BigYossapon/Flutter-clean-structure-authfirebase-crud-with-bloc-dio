@@ -7,7 +7,9 @@ import 'package:apptester/src/features/profile/domain/repositories/firebase/prof
 import '../../../../login/data/datasources/remote/firebase/login_firebase_datasource.dart';
 import '../../../domain/models/response_firebase_profile_model/response_firebase_profile_model.dart';
 import '../../datasources/remote/firebase/profile_firebase_datasource.dart';
+import 'package:injectable/injectable.dart';
 
+//@lazySingleton
 class ProfileFirebaseRepositoryImpl extends ProfileFirebaseRepository {
   final ProfileFirebaseDataSource profileFirebaseDataSource;
 
@@ -46,8 +48,8 @@ class ProfileFirebaseRepositoryImpl extends ProfileFirebaseRepository {
   }
 
   @override
-  Future<ResponseFirebaseProfileModel> getProfile() {
+  Future<ResponseFirebaseProfileModel> getProfile(String id) {
     // TODO: implement getProfile
-    return profileFirebaseDataSource.getProfile();
+    return profileFirebaseDataSource.getProfile(id);
   }
 }

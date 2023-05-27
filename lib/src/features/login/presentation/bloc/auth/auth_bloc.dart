@@ -8,6 +8,7 @@ import 'package:apptester/src/features/login/domain/use_cases/firebase/signin_go
 import 'package:apptester/src/features/register/domain/models/request_firebase_register_model/request_firebase_register_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../domain/models/firebase/request_login_firebase_model/request_login_firebase_model.dart';

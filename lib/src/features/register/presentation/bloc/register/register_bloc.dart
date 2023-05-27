@@ -5,10 +5,12 @@ import 'package:apptester/src/features/register/domain/use_cases/firebase/regist
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
 
+@injectable
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final RegisterEmailPasswordUseCase registerEmailPasswordUseCase;
   RegisterBloc({required this.registerEmailPasswordUseCase})

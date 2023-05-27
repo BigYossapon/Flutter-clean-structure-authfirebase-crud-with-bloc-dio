@@ -2,7 +2,9 @@ import '../../../../domain/models/request_deleteprofile_model/request_deleteprof
 import '../../../../domain/models/request_editprofile_model/request_editprofile_model.dart';
 import '../../../../domain/models/request_firebase_createprofile_model/request_firebase_createprofile_model.dart';
 import '../../../../domain/models/response_firebase_profile_model/response_firebase_profile_model.dart';
+import 'package:injectable/injectable.dart';
 
+@factoryMethod
 abstract class ProfileFirebaseDataSource {
   // Future<List<RequestModel>> getEmployeeData();
 
@@ -18,5 +20,5 @@ abstract class ProfileFirebaseDataSource {
 
   Future<void> deleteAccount(String id);
 
-  Future<ResponseFirebaseProfileModel> getProfile();
+  Future<ResponseFirebaseProfileModel> getProfile(String id);
 }

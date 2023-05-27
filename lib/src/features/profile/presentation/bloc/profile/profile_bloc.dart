@@ -84,7 +84,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       // TODO: implement event handler
       emit(ProfileLoadingState());
       try {
-        final profile = await getProfileUseCase.call();
+        final profile = await getProfileUseCase.call(event.id);
 
         emit(ProfileDataSuccessState(responseFirebaseProfileModel: profile));
       } on SocketException catch (_) {

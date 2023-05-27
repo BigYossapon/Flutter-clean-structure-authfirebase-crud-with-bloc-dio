@@ -3,7 +3,9 @@ import 'package:apptester/src/features/login/domain/models/firebase/request_logi
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 
+//@lazySingleton
 class LoginFirebaseDataSourceImpl extends LoginFirebaseDataSource {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;

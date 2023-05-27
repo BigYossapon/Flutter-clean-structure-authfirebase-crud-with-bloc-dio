@@ -1,9 +1,11 @@
 import 'package:apptester/src/features/profile/domain/models/request_firebase_createprofile_model/request_firebase_createprofile_model.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../models/request_deleteprofile_model/request_deleteprofile_model.dart';
 import '../../models/request_editprofile_model/request_editprofile_model.dart';
 import '../../models/response_firebase_profile_model/response_firebase_profile_model.dart';
 
+@factoryMethod
 abstract class ProfileFirebaseRepository {
   // Future<List<RequestModel>> getEmployeeData();
 
@@ -19,5 +21,5 @@ abstract class ProfileFirebaseRepository {
 
   Future<void> deleteAccount(String id);
 
-  Future<ResponseFirebaseProfileModel> getProfile();
+  Future<ResponseFirebaseProfileModel> getProfile(String id);
 }

@@ -44,3 +44,68 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// gh.factory<AuthBloc>(() => AuthBloc(
+//       getCurrentUidUseCase: gh.call(),
+//       isSigninUseCase: gh.call(),
+//       signInEmailPasswordUseCase: gh.call(),
+//       signinFacebookUseCase: gh.call(),
+//       signInGoogleUseCase: gh.call()));
+//   gh.factory<ProfileBloc>(() => ProfileBloc(
+//       createProfileUserCase: gh.call(),
+//       deleteAccountUserCase: gh.call(),
+//       deleteProfileUserCase: gh.call(),
+//       editProfileUseCase: gh.call(),
+//       getProfileUseCase: gh.call(),
+//       signOutUseUseCase: gh.call()));
+//   gh.factory<RegisterBloc>(
+//       () => RegisterBloc(registerEmailPasswordUseCase: gh.call()));
+//   //Cubit/Bloc
+//   //useCase
+//   gh.lazySingleton<GetCurrentUidUseCase>(
+//       () => GetCurrentUidUseCase(loginFirebaseRepository: gh.call()));
+//   gh.lazySingleton<IsSigninUseCase>(
+//       () => IsSigninUseCase(loginFirebaseRepository: gh.call()));
+//   gh.lazySingleton<SignInEmailPasswordUseCase>(
+//       () => SignInEmailPasswordUseCase(loginFirebaseRepository: gh.call()));
+//   gh.lazySingleton<SignInFacebookUseCase>(
+//       () => SignInFacebookUseCase(loginFirebaseRepository: gh.call()));
+//   gh.lazySingleton<SignInGoogleUseCase>(
+//       () => SignInGoogleUseCase(loginFirebaseRepository: gh.call()));
+//   gh.lazySingleton<CreateProfileUserCase>(
+//       () => CreateProfileUserCase(profileFirebaseRepository: gh.call()));
+//   gh.lazySingleton<DeleteAccountUserCase>(
+//       () => DeleteAccountUserCase(profileFirebaseRepository: gh.call()));
+//   gh.lazySingleton<DeleteProfileUserCase>(
+//       () => DeleteProfileUserCase(profileFirebaseRepository: gh.call()));
+//   gh.lazySingleton<GetProfileUseCase>(
+//       () => GetProfileUseCase(profileFirebaseRepository: gh.call()));
+//   gh.lazySingleton<EditProfileUseCase>(
+//       () => EditProfileUseCase(profileFirebaseRepository: gh.call()));
+//   gh.lazySingleton<SignoutUseCase>(
+//       () => SignoutUseCase(profileFirebaseRepository: gh.call()));
+//   gh.lazySingleton<RegisterEmailPasswordUseCase>(() =>
+//       RegisterEmailPasswordUseCase(registerFirebaseRepository: gh.call()));
+
+//   //repository
+//   gh.lazySingleton<LoginFirebaseRepository>(
+//       () => LoginFirebaseRepositoryImpl(loginFirebaseDataSource: gh.call()));
+//   gh.lazySingleton<RegisterFirebaseRepository>(() =>
+//       RegisterFirebaseRepositoryImpl(registerFirebaseDatasource: gh.call()));
+//   gh.lazySingleton<ProfileFirebaseRepository>(() =>
+//       ProfileFirebaseRepositoryImpl(profileFirebaseDataSource: gh.call()));
+
+//   //data source
+//   gh.lazySingleton<LoginFirebaseDataSource>(
+//       () => LoginFirebaseDataSourceImpl(auth: gh.call(), firestore: gh.call()));
+//   gh.lazySingleton<RegisterFirebaseDatasource>(() =>
+//       RegisterFirebaseDatasourceImpl(auth: gh.call(), firestore: gh.call()));
+//   gh.lazySingleton<ProfileFirebaseDataSource>(() =>
+//       ProfileFirebaseDatasourceImpl(auth: gh.call(), firestore: gh.call()));
+
+//   //External
+//   final auth = FirebaseAuth.instance;
+//   final fireStore = FirebaseFirestore.instance;
+
+//   gh.lazySingleton(() => auth);
+//   gh.lazySingleton(() => fireStore);

@@ -31,8 +31,10 @@ class EditProfileEvent extends ProfileEvent {
 }
 
 class GetProfileEvent extends ProfileEvent {
+  String id;
+  GetProfileEvent({required this.id});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [id];
 }
 
 class SignOutEvent extends ProfileEvent {
